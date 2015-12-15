@@ -7,8 +7,11 @@ feature 'add links' do
     visit '/links'
     click_button 'Add link'
     fill_in('Title', with: 'Makers Academy')
-    fill_in('URL', with: 'http://www.makersacademy.com/')
+    fill_in('url', with: 'http://www.makersacademy.com/')
     click_button 'Submit'
-    expect(page).to have_content 'Link successfully added'
+    expect(current_path).to eq '/links'
+    within 'ul#links' do
+      expect(page).to have_content 'Makers Academy'
+    end
   end
 end
