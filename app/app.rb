@@ -1,6 +1,8 @@
 require 'sinatra/base'
 require_relative 'models/link'
 
+ENV['RACK_ENV'] ||= 'development'
+
 class BookmarkManager < Sinatra::Base
 
   enable :sessions
@@ -12,7 +14,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/new' do
-    erb :'links/add-link'
+    erb :'links/new'
   end
 
   post '/links' do
