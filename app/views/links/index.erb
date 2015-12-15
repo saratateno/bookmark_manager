@@ -1,5 +1,11 @@
 <h1> Links </h1>
 
+<%= @message %>
+
+<form action='/add-link' method='get'>
+  <input type='submit' value='Add link'>
+</form>
+
 <ul id="links">
   <% @links.each do |link| %>
   <li>
