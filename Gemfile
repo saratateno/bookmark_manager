@@ -8,6 +8,7 @@ gem 'selenium-webdriver'
 gem 'sinatra'
 gem 'database_cleaner'
 gem 'bcrypt'
+gem 'sinatra-flash'
 
 group :test, :development do
   gem 'rspec'

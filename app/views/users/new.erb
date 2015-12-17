@@ -1,5 +1,9 @@
 <h1>Add New User</h1>
 
+<% if @password_fail_message %>
+  <%= @password_fail_message %>
+<% end %>
+
 <form action="/users" method="post">
   <label for="email">
     Email: <input type="text" name="email">
