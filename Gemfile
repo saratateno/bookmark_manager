@@ -8,7 +8,7 @@ gem 'selenium-webdriver'
 gem 'sinatra'
 gem 'database_cleaner'
 
-group :test do
+group :test, :development do
   gem 'rspec'
   gem 'capybara'
   gem 'byebug'
