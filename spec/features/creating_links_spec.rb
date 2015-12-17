@@ -9,6 +9,7 @@ feature 'Creating links' do
     fill_in 'Name', with: 'BBC'
     fill_in 'url', with: 'http://bbc.co.uk'
     click_button 'Add'
+
     expect(page).to have_content('BBC')
   end
 end
