@@ -4,13 +4,9 @@ feature 'Adding a tag' do
   # I would like to tag links in my bookmark manager
 
   scenario "I can add a tag to a new link" do
-    visit "links/new"
-    fill_in 'Name', with: 'BBC'
-    fill_in 'url', with: 'http://bbc.co.uk'
-    fill_in 'tags', with: 'News'
-    click_button 'Add'
+    create_link_BBC
 
     link = Link.first
-    expect(link.tags.map(&:name)).to include("News")
+    expect(link.tags.map(&:name)).to include("bubbles")
   end
 end
