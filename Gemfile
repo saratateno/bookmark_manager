@@ -7,6 +7,7 @@ group :production do
   gem 'dm-postgres-adapter'
   gem 'sinatra'
   gem 'selenium-webdriver'
+  gem 'rake'
 end
 
 group :test do
@@ -14,4 +15,5 @@ group :test do
   gem 'rspec-sinatra'
   gem 'database_cleaner'
   gem 'capybara'
+  gem 'rake'
 end
