@@ -9,4 +9,15 @@ feature 'add tags' do
     link = Link.first
     expect(link.tags.map(&:name)).to include('Bootcamp')
   end
+
+  scenario 'add multiple tags' do
+    visit '/links/new'
+    fill_in('title', with: 'Makers Academy')
+    fill_in('url', with: 'http://www.makersacademy.com')
+    fill_in('tags', with: 'Bootcamp, education, coding, tech')
+    click_button('Hey Presto!')
+    expect(current_path).to eq ('/links')
+    link = Link.first
+    expect(link.tags.map(&:name)).to include('Bootcamp', 'coding')
+  end
 end

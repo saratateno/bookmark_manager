@@ -19,8 +19,10 @@ class BookmarkManager < Sinatra::Base
 
   post '/links' do
     link = Link.new(title: params[:title], url: params[:url])
-    tag = Tag.first_or_create(name: params[:tags])
-    link.tags << tag
+    tag_names = params[:tags].split(', ')
+    tag_names.each do |name|
+      link.tags << Tag.first_or_create(name: name)
+    end
     link.save
     redirect '/links'
   end
@@ -29,9 +31,6 @@ class BookmarkManager < Sinatra::Base
     filter_tag = Tag.first(name: params[:name])
     @links = filter_tag ? filter_tag.links : []
     erb :links
-    #
-    # all_links = Link.all
-    # bubble_links = all_links.all(:bubble => true)
   end
 
   # start the server if ruby file executed directly
