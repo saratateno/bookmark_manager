@@ -10,7 +10,7 @@ class BookmarkManager < Sinatra::Base
 
   get '/links' do
     @links = Link.all
-    erb :'links'
+    erb :links
   end
 
   get '/links/new' do
@@ -32,6 +32,14 @@ class BookmarkManager < Sinatra::Base
     @links = filter_tag ? filter_tag.links : []
     erb :links
   end
+
+  get '/users/new' do
+    erb :'users/new'
+  end
+  # 
+  # post '/users' do
+  #
+  # end
 
   # start the server if ruby file executed directly
   run! if app_file == $0
