@@ -13,3 +13,10 @@ def create_link_BBC_3_tags
   fill_in 'tags', with: 'bubbles news media'
   click_button 'Add'
 end
+
+def add_user
+  visit 'users/new'
+  fill_in 'email', with: "username@email.com"
+  fill_in 'password', with: "password"
+  click_button 'Sign up!'
+end
