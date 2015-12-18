@@ -1,8 +1,15 @@
 <!DOCTYPE html>
 <htmL>
   <form action="/users" method="post">
+    <p>Enter your email address</p>
     <input type="text" name="email" placeholder="email" autofocus required>
-    <input type="password" name="password" placeholder="password" required>
+    <p>Enter a password</p>
+    <input type="password" name="password" required>
+    <p>Please confirm your password</p>
+    <input type="password" name="password_confirmation" required>
     <button type="submit">Sign up!</button>
   </form>
+
+  <%= @failed_signup %>
+
 </htmL>

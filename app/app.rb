@@ -44,14 +44,22 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/users/new' do
+    @failed_signup = session[:error]
     erb :'/users/new'
   end
 
   post '/users' do
-    user = User.first_or_create(email: params[:email], password_digest: params[:password])
-    session[:user_id] = user.id
-
-    redirect '/links'
+    user = User.new(email: params[:email],
+                    password_digest: params[:password],
+                    password_confirmation: params[:password_confirmation])
+    if params[:password]==params[:password_confirmation]
+      user.save
+      session[:user_id]=user.id
+      redirect '/links'
+    else
+      session[:error]='Cannot sign up. Mismatching passwords'
+      redirect '/users/new'
+    end
   end
 
   # start the server if ruby file executed directly
