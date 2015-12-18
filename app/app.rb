@@ -7,12 +7,17 @@ class BookmarkManager < Sinatra::Base
   enable :sessions
   set :session_secret, 'super secret'
 
+  helpers do
+    def current_user
+      @current_user ||= User.get(session[:user_id])
+    end
+  end
+
   get '/' do
     redirect '/links'
   end
 
   get '/links' do
-    @email = session[:email]
     @links = Link.all
     erb :'links/index'
   end
@@ -24,7 +29,7 @@ class BookmarkManager < Sinatra::Base
 
   post '/links' do
     link = Link.new(url: params[:url], title: params[:Name])
-    params[:tags].split.each do |tag_name|
+    params[:tags].split(', ').each do |tag_name|
       tag  = Tag.first_or_create(name: tag_name)
       link.tags << tag
     end
@@ -44,7 +49,7 @@ class BookmarkManager < Sinatra::Base
 
   post '/users' do
     user = User.first_or_create(email: params[:email], password_digest: params[:password])
-    session[:email] = user.email
+    session[:user_id] = user.id
 
     redirect '/links'
   end

@@ -10,9 +10,10 @@
       <li>
         Title: <%= link.title %>
         URL:   <%= link.url %>
+        <% tags_to_display = link.tags.map(&:name) %>
+        Tags: <%= tags_to_display.join(', ') %>
       </li>
       <% end %>
   </ul>
 
-  <p>Welcome <%= @email %>!</p>
 </html>
