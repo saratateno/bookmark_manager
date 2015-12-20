@@ -4,14 +4,15 @@
 
 feature 'add links' do
   scenario 'user adds a link' do
-    visit '/links'
-    click_button 'Add link'
+    visit '/links/new'
     fill_in('Title', with: 'Makers Academy')
     fill_in('url', with: 'http://www.makersacademy.com/')
+    fill_in('Tags', with: 'Bootcamp')
     click_button 'Submit'
-    expect(current_path).to eq '/links'
+    expect(current_path).to eq '/'
     within 'ul#links' do
       expect(page).to have_content 'Makers Academy'
     end
+    expect(Link.first.tags.map(&:name)).to include 'Bootcamp'
   end
 end
