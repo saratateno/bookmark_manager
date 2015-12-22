@@ -19,11 +19,17 @@ class BookmarkManager < Sinatra::Base
 
   post '/links' do
     link = Link.new(title: params[:Title], url: params[:url])
-    tag = Tag.create(name: params[:tags])
+    tag = Tag.first_or_create(name: params[:tags].downcase)
     link.tags << tag
     link.save
     session[:message] = 'Link successfully added'
     redirect '/'
+  end
+
+  get '/tags/:name' do
+    tag = Tag.first(name: params[:name])
+    @links = tag ? tag.links : []
+    erb :'links/index'
   end
 
   # start the server if ruby file executed directly

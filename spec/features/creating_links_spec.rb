@@ -13,6 +13,6 @@ feature 'add links' do
     within 'ul#links' do
       expect(page).to have_content 'Makers Academy'
     end
-    expect(Link.first.tags.map(&:name)).to include 'Bootcamp'
+    expect(Link.first.tags.map(&:name)).to include 'bootcamp'
   end
 end
